@@ -18,9 +18,9 @@ def selectClientKey(d):
     keyboard = telebot.types.InlineKeyboardMarkup()
     l=list(d.keys())
     ni = 0
-    for i in range(0, len(l), 2):  # перебираем элементы списка по 5 штук
+    for i in range(0, len(l), 1):  # перебираем элементы списка по 5 штук
         row = []  # создаем пустой список для кнопок текущей строки
-        for j in range(i, min(i+2, len(l))):  # перебираем элементы строки (не более 5 штук)
+        for j in range(i, min(i+1, len(l))):  # перебираем элементы строки (не более 5 штук)
             row.append(telebot.types.InlineKeyboardButton(text=str(d[l[j]]), callback_data=f'get_client={str(l[j])}'))
         keyboard.row(*row)  # добавляем кнопки текущей строки в клавиатуру
         ni += 1
@@ -52,19 +52,20 @@ def advanceKey(c_id, mid):
         telebot.types.InlineKeyboardButton('LAN порт', callback_data=f'lan={mid}'),
         #telebot.types.InlineKeyboardButton('MAC таблиця', callback_data=f'mactable={mid}'),
         telebot.types.InlineKeyboardButton('IP адреса', callback_data=f'getip={mid}'),
-        telebot.types.InlineKeyboardButton('Рух коштів', callback_data=f'gobalans={mid}')
+        telebot.types.InlineKeyboardButton('Пінг', callback_data=f'ping={mid}')
+        
     )
     keyboard.row(
         telebot.types.InlineKeyboardButton('Зняти з паузи', callback_data=f'clientrun={mid}'),
         telebot.types.InlineKeyboardButton('На паузу', callback_data=f'clientstop={mid}'),
-        
+        telebot.types.InlineKeyboardButton('Рух коштів', callback_data=f'gobalans={mid}')
     )
     if c_id in ADMINS:
         keyboard.row(
             telebot.types.InlineKeyboardButton('⟲ ONU', callback_data=f'rebootonu={mid}'),
             telebot.types.InlineKeyboardButton('⟲ Mikrotik', callback_data=f'rebootrouter={mid}'),
             telebot.types.InlineKeyboardButton('✖ ONU', callback_data=f'deleteonu={mid}'),
-            telebot.types.InlineKeyboardButton('★ WiFi', callback_data=f'wifipass={mid}'),
+            telebot.types.InlineKeyboardButton('★ WiFi', callback_data=f'wifipass={mid}')
         )
     return keyboard
 

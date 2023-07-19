@@ -1,6 +1,8 @@
 import paramiko
 from config import *
 import re
+from ping3 import ping, verbose_ping
+
 
 
 def parse_data(text):
@@ -198,3 +200,10 @@ def createForwardToClient(ip,port):
     # закрываем соединение
     ssh.close()
     return '45.155.81.22:45555'
+
+def myping(ip):
+    try:
+        return str(round(ping(ip)*1000,2))+' мс'
+    except:
+        return 'не відповідає'
+

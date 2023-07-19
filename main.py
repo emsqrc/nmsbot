@@ -158,6 +158,11 @@ while True:
                 client_data = billfile.main_dict[l[1]]
                 str = client_data['IP']
                 bot.send_message(call.message.chat.id, str)
+            elif l[0] == 'ping':
+                client_data = billfile.main_dict[l[1]]
+                str = client_data['IP']
+                str = ssh.myping(str)
+                bot.send_message(call.message.chat.id, str)
             elif l[0] == 'gobalans':
                 client_data = billfile.main_dict[l[1]]
                 user = client_data['ID']
