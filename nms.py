@@ -14,6 +14,7 @@ def login():
     #print(r.status_code)  # Проверяем статус-код ответа
 
 def encode_mac(mac):
+    mac = mac.replace(' ','')
     mac_address = mac
     # удаление точек из мак-адреса
     mac_address = mac_address.replace(".", "")
@@ -22,6 +23,7 @@ def encode_mac(mac):
     return mac_address
 
 def encode_mac_gpon(mac):
+    mac = mac.replace(' ','')
     mac_address = mac
     # удаление точек из мак-адреса
     mac_address = mac_address.replace(':','%3A')
